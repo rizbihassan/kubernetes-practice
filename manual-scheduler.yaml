@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+  nodeName: node01    # this will deploy the pod in node01
+  #to deploy, run "kubectl apply -f manual-scheduler.yaml"
