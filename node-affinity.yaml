@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+  labels:
+    name: nginx
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: color
+                  values:
+                  - blue
+                  operator: In
+# this pod will only deploy to nodes having color=blue label
