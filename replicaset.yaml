@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rizbi-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: dev
+  template: #pod template
+    metadata:
+      name: rizbi-pod
+      labels:
+        project: dev
+    spec:
+      containers:
+        - name: nginx-containers
+          image: nginx
