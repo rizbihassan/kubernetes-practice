@@ -1,0 +1,40 @@
+drain-cordon commands
+
+# kubectl drain node01 --ignore-daemonsets      --> moves exisiting pods to a different node and make node01 unschedulable
+# kubectl uncordon node01 --> makes the node schedulable again
+# kubectl cordon node01 --> makes the node unschedulable but keeps existing pods
+
+------------------------------------------------------------------------------------------
+cluster version upgrade
+
+steps are
+1) upgrade kubeadm version using "apt install kubeadm=1.19.0-00" or other version number
+2) upgrade k8s cluster using "kubeadm upgrade apply v1.19.0"
+3) upgrade kubelet using "apt install kubelet=1.19.0-00"
+
+once you upgrade kubelet, use "kubectl get nodes" to see if the node got upgraded to the desired version.
+
+
+-------------------------------------------------------------------------------------------------------------------
+K8s backup using snapshot
+command:
+ETCDCTL_API=3 etcdctl \
+--cacert=/etc/kubernetes/pki/etcd/ca.crt \
+--cert=/etc/kubernetes/pki/etcd/server.crt \
+--key=/etc/kubernetes/pki/etcd/server.key \
+snapshot save /opt/snapshot-pre-boot-new.db
+
+
+snapshot restore command:
+
+ETCDCTL_API=3 etcdctl  --data-dir /var/lib/etcd-from-backup \
+snapshot restore /opt/snapshot-pre-boot.db
+
+then edit the /etc/kubernetes/manifests/etcd.yaml file and change the host "path" to /var/lib/etcd-from-backup
+
+  - hostPath:
+      path: /var/lib/etcd-from-backup
+      type: DirectoryOrCreate
+    name: etcd-data
+
+    it will automatically recreate the etcd pod since it is a static pod.

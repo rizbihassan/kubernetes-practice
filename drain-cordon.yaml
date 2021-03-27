@@ -1,0 +1,3 @@
+# kubectl drain node01 --ignore-daemonsets      --> moves exisiting pods to a different node and make node01 unschedulable
+# kubectl uncordon node01 --> makes the node schedulable again
+# kubectl cordon node01 --> makes the node unschedulable but keeps existing pods
