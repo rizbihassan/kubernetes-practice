@@ -38,3 +38,23 @@ then edit the /etc/kubernetes/manifests/etcd.yaml file and change the host "path
     name: etcd-data
 
     it will automatically recreate the etcd pod since it is a static pod.
+
+    ------------------------------------------------------------------------------------------------------
+    certificates
+this shows details of the certificate
+first copy the path of .crt by going to the specific pod and copying the path
+# openssl x509 -in /etc/kubernetes/pki/etcd/server.crt -text
+
+
+
+to see all csr, use ->
+kubectl get csr
+to approve a CSR named akshay, use->
+kubectl certificate approve akshay
+
+-----------------------------------------------------------------------------------------------------------------------------\
+to view config file, see more /.kube/config
+
+this command uses the config file at /root/my-kube-config and uses context research 
+kubectl config --kubeconfig=/root/my-kube-config use-context research
+
