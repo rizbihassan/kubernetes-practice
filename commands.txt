@@ -58,3 +58,13 @@ to view config file, see more /.kube/config
 this command uses the config file at /root/my-kube-config and uses context research 
 kubectl config --kubeconfig=/root/my-kube-config use-context research
 
+
+----------------------------------------------------------------------------------------------------
+                                    NETOWRKING COMMANDS
+----------------------------------------------------------------------------------------------------
+
+ip link #shows details of network
+ip link show "interface-name"
+arp
+netstat -nplt # checks port 
+netstat -anp | grep etcd
