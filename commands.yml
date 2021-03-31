@@ -68,3 +68,13 @@ ip link show "interface-name"
 arp
 netstat -nplt # checks port 
 netstat -anp | grep etcd
+
+
+
+ps -aux| grep network-plugin      # to check the network config for the cluster
+
+# to check plugin, go to 
+/etc/cni/net.d/
+
+#to check ip address range of a network plugin such as weave, check
+ip addr
