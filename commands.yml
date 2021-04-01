@@ -78,3 +78,10 @@ ps -aux| grep network-plugin      # to check the network config for the cluster
 
 #to check ip address range of a network plugin such as weave, check
 ip addr
+
+# to check ip range of pods in a cluster, 
+check which pods are deployed related to cni 
+then "kubectl logs pod-name container-name" and check the ip addr range
+
+# to check ip range of services in a cluster, 
+go to /etc/kubernetes/manifests/kube-apiserver.yaml | grep service-cluster-ip-range
