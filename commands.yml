@@ -68,6 +68,7 @@ ip link show "interface-name"
 arp
 netstat -nplt # checks port 
 netstat -anp | grep etcd
+netstat -plan | grep kube-proxy
 
 
 
@@ -85,3 +86,18 @@ then "kubectl logs pod-name container-name" and check the ip addr range
 
 # to check ip range of services in a cluster, 
 go to /etc/kubernetes/manifests/kube-apiserver.yaml | grep service-cluster-ip-range
+
+----------------------------------------------------------------------------------------------------
+                                    troubleshooting
+----------------------------------------------------------------------------------------------------
+
+service kube-apiserver status
+service kube-controller-manager status
+service kube-scheduler status
+service kubelet status
+service kube-proxy status
+
+# to troubleshoot worker nodes, ssh into that node and then
+cd /etc/kubernetes/pki/
+journalctl -u kubelet -f
+service kubelet start
