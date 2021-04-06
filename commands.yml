@@ -101,3 +101,9 @@ service kube-proxy status
 cd /etc/kubernetes/pki/
 journalctl -u kubelet -f
 service kubelet start
+
+
+
+----------------------------exam commands ------------------------------------------------------------------------------------------
+kubectl api-resources -o wide
+kubectl cluster-info --kubeconfig=/root/xxx
