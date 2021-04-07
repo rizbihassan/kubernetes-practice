@@ -107,3 +107,4 @@ service kubelet start
 ----------------------------exam commands ------------------------------------------------------------------------------------------
 kubectl api-resources -o wide
 kubectl cluster-info --kubeconfig=/root/xxx
+kubectl explain pvc --recursive | less    #handy command to use when you forget what parameters to use
